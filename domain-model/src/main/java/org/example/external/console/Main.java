@@ -16,7 +16,6 @@ public class Main {
 
     public void start() {
         try {
-            System.out.println("Hello world!");
             FlightRepository flightRepository = new InMemoryFlightRepository();
             BookingRepository bookingRepository = new InMemoryBookingRepository();
             createSampleFlights(flightRepository);
