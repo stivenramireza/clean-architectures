@@ -22,6 +22,18 @@ public class FlightService {
         this.bookingRepository = bookingRepository;
     }
 
+    public List<Flight> searchAll() {
+        // Perform search based on the given parameters
+        List<Flight> flights = flightRepository.searchAll();
+
+        // Filter out flights that are full
+        flights = flights.stream()
+                .filter(flight -> flight.isAvailable(1))
+                .collect(Collectors.toList());
+
+        return flights;
+    }
+
     public List<Flight> search(Route route, LocalDate departureDate, int passengers) {
 
         // Validate search criteria
@@ -57,5 +69,9 @@ public class FlightService {
     public void checkSetup() {
         System.out.println(this.bookingRepository.getClass().getSimpleName());
         System.out.println(this.flightRepository.getClass().getSimpleName());
+    }
+
+    public void createSampleFlights() {
+        this.flightRepository.createSampleFlights();
     }
 }

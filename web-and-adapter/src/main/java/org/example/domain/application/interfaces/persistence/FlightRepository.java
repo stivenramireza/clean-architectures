@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface FlightRepository {
 
+    List<Flight> searchAll();
+
     List<Flight> search(Route route, LocalDate departureDate);
 
     void save(Flight flight);
+
+    void createSampleFlights();
 
 }

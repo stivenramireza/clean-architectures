@@ -13,7 +13,7 @@ public class HelloController {
 		this.service = service;
 	}
 
-	@GetMapping("/")
+	@GetMapping("/api/v1")
 	public String index() {
         this.service.checkSetup();
 		return "Greetings from Spring Boot!";
