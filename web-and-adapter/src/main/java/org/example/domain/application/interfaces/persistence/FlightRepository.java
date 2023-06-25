@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface FlightRepository {
 
-    List<Flight> searchAll();
+    List<Flight> searchAll(int limit, int offset);
 
     List<Flight> search(Route route, LocalDate departureDate);
 

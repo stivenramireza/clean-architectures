@@ -22,16 +22,8 @@ public class FlightService {
         this.bookingRepository = bookingRepository;
     }
 
-    public List<Flight> searchAll() {
-        // Perform search based on the given parameters
-        List<Flight> flights = flightRepository.searchAll();
-
-        // Filter out flights that are full
-        flights = flights.stream()
-                .filter(flight -> flight.isAvailable(1))
-                .collect(Collectors.toList());
-
-        return flights;
+    public List<Flight> searchAll(int limit, int offset) {
+        return flightRepository.searchAll(limit, offset);
     }
 
     public List<Flight> search(Route route, LocalDate departureDate, int passengers) {

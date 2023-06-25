@@ -27,9 +27,12 @@ public class InMemoryFlightRepository implements FlightRepository {
     }
 
     @Override
-    public List<Flight> searchAll() {
+    public List<Flight> searchAll(int limit, int offset) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM flights");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM flights WHERE available_seats >= 1 LIMIT ? OFFSET ?");
+            statement.setInt(1, limit);
+            statement.setInt(2, offset);
+
             ResultSet resultSet = statement.executeQuery();
 
             List<Flight> flights = new ArrayList<>();
